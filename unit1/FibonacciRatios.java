@@ -14,7 +14,7 @@ public class FibonacciRatios
     {
         b += a;
         a = b - a;
-
+        
         System.out.println((double) b / a);
     }
   }
