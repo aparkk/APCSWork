@@ -7,8 +7,8 @@ class IcyHot
 {
     public static void testIcyHot(int temp1, int temp2)
     {
-        System.out.println ("temp1 = " + temp1 + ", temp2 = " + temp2
-         + ": " + icyHot(temp1, temp2));
+        System.out.println ("temp1 (" + temp1 + "), temp2 (" + temp2
+         + "): " + icyHot(temp1, temp2));
     }
 
     public static boolean icyHot(int temp1, int temp2)
