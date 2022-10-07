@@ -3,11 +3,19 @@
 //
 
 
-public class Attention
+class Attention
 {
-  public static void testAttention(String str)
+  public static void testAttention(String str, boolean expected)
   {
-    System.out.println(str + ", gets attention? " + attention(str));
+    Boolean ans = attention(str);
+
+    System.out.print ("string: " + str + " expected: " + expected +
+     " answer: " + ans);
+
+    if (ans == expected)
+      System.out.println (" CORRECT!");
+    else
+      System.out.println (" WRONG!");
   }
 
   public static boolean attention(String str)
@@ -20,8 +28,8 @@ public class Attention
 
   public static void main(String[] args)
   {
-    testAttention("Hello, my name is Inigo Montoya.");
-    testAttention("Excuse me, Dr. Kessner?");
-    testAttention("Hey, you! Give me your code!");
+    testAttention("Hello, my name is Inigo Montoya.", false);
+    testAttention("Excuse me, Dr. Kessner?", false);
+    testAttention("Hey, you! Give me your code!", true);
   }
 }

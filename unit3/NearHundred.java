@@ -5,10 +5,17 @@
 
 public class NearHundred
 {
-  public static void testNearHundred(int n)
+  public static void testNearHundred(int n, boolean expected)
   {
-    System.out.println(n + " is within 10 of 100 or 200? "
-     + nearHundred(n));
+    boolean ans = nearHundred(n);
+
+    System.out.print ("n: " + n + "expected: " + expected +
+     "answer: " + ans);
+
+    if (ans == expected)
+      System.out.println (" CORRECT!");
+    else
+      System.out.println (" WRONG!");
   }
 
   public static boolean nearHundred(int n)
@@ -24,8 +31,8 @@ public class NearHundred
 
   public static void main(String[] args)
   {
-    testNearHundred(93);
-    testNearHundred(90);
-    testNearHundred(89);
+    testNearHundred(93, true);
+    testNearHundred(90, true);
+    testNearHundred(89, false);
   }
 }

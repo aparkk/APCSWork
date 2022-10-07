@@ -5,20 +5,28 @@
 
 public class Greetings
 {
-  public static void testGreetings(String name)
+  public static void testGreetings(String name, String expected)
   {
-    System.out.println(greetings(name));
+    String ans = greetings(name);
+
+    System.out.print ("name: " + name + " expected greeting: " + expected +
+     " actual greeting: " + ans);
+
+    if (ans.equals(expected))
+      System.out.println (" CORRECT!");
+    else
+      System.out.println (" WRONG!");
   }
 
   public static String greetings(String name)
   {
-    return "Hi " + name + "! How are you?";
+    return "Hello, " + name + ", how are you?";
   }
 
   public static void main(String[] args)
   {
-    testGreetings("Dr. Kessner");
-    testGreetings("Ascii Cat");
-    testGreetings("Sydneys");
+    testGreetings("Dr. Kessner", "Hello, Dr. Kessner, how are you?");
+    testGreetings("Ascii Cat", "Hello, Ascii Cat, how are you?");
+    testGreetings("Sydneys", "Hello, Sydneys, how are you?");
   }
 }
