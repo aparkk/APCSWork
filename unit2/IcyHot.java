@@ -5,14 +5,21 @@
 
 class IcyHot
 {
-    public static void testIcyHot(int temp1, int temp2)
+    public static void testIcyHot(int temp1, int temp2, boolean expected)
     {
-        System.out.println ("temp1 (" + temp1 + "), temp2 (" + temp2
-         + "): " + icyHot(temp1, temp2));
+        boolean ans = icyHot(temp1, temp2);
+
+        System.out.print ("temp1: " + temp1 + " temp2: " + temp2 + " expected: " + expected +
+         " answer: " + ans);
+
+        if (ans == expected)
+          System.out.println (" CORRECT!");
+        else
+          System.out.println (" WRONG!");
     }
 
     public static boolean icyHot(int temp1, int temp2)
-    {}
+    {
       if (temp1 < 0 && temp2 > 100)
         return true;
 
@@ -24,8 +31,8 @@ class IcyHot
 
     public static void main(String[] args)
     {
-        testIcyHot(120, -1);
-        testIcyHot(-1, 120);
-        testIcyHot(2, 120);
+        testIcyHot(120, -1, true);
+        testIcyHot(-1, 120, true);
+        testIcyHot(2, 120, false);
     }
 }

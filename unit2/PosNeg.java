@@ -5,10 +5,17 @@
 
 class PosNeg
 {
-    public static void testPosNeg(int a, int b, boolean negative)
+    public static void testPosNeg(int a, int b, boolean negative, boolean expected)
     {
-        System.out.println (a + ", " + b + ", " + negative + ": "
-        + posNeg(a, b, negative));
+      boolean ans = posNeg(a, b, negative);
+
+      System.out.print ("a: " + a + " b: " + b + " negative: " + negative +
+       " expected: " + expected + " answer: " + ans);
+
+      if (ans == expected)
+        System.out.println (" CORRECT!");
+      else
+        System.out.println (" WRONG!");
     }
 
     public static boolean posNeg(int a, int b, boolean negative)
@@ -27,8 +34,8 @@ class PosNeg
 
     public static void main(String[] args)
     {
-        testPosNeg(1, -1, false);
-        testPosNeg(-1, 1, false);
-        testPosNeg(-4, -5, true);
+        testPosNeg(1, -1, false, true);
+        testPosNeg(-1, 1, false, true);
+        testPosNeg(-4, -5, true, true);
     }
 }

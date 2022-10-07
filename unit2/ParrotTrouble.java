@@ -4,14 +4,17 @@
 
 class ParrotTrouble
 {
-  public static void testParrotTrouble(boolean talking, int hour)
+  public static void testParrotTrouble(boolean talking, int hour, boolean expected)
   {
-    if (talking)
-      System.out.println("talking at hour " + hour +
-      "? " + parrotTrouble(talking, hour));
+    boolean ans = parrotTrouble(talking, hour);
+
+    System.out.print ("talking: " + talking + " hour: " + hour + " expected: " +
+    expected + " answer: " + ans);
+
+    if (ans == expected)
+      System.out.println (" CORRECT!");
     else
-    System.out.println("not talking at hour " + hour +
-    "? " + parrotTrouble(talking, hour));
+      System.out.println (" WRONG!");
   }
 
   public static boolean parrotTrouble(boolean talking, int hour)
@@ -24,8 +27,8 @@ class ParrotTrouble
 
   public static void main(String[] args)
   {
-    testParrotTrouble(true, 6);
-    testParrotTrouble(true, 7);
-    testParrotTrouble(false, 6);
+    testParrotTrouble(true, 6, true);
+    testParrotTrouble(true, 7, false);
+    testParrotTrouble(false, 6, false);
   }
 }

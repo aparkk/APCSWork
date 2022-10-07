@@ -5,9 +5,18 @@
 
 class Makes10
 {
-    public static void testMakes10(int a, int b)
+    public static void testMakes10(int a, int b, boolean expected)
     {
-        System.out.println(a + ", " + b + ": " + makes10(a, b));
+      boolean ans = makes10(a, b);
+
+      System.out.print ("a: " + a + " b: " + b + " expected: " + expected +
+       " answer: " + ans);
+
+      if (ans == expected)
+        System.out.println (" CORRECT!");
+      else
+        System.out.println (" WRONG!");
+
     }
 
     public static boolean makes10(int a, int b)
@@ -20,8 +29,8 @@ class Makes10
 
     public static void main(String[] args)
     {
-        testMakes10(9, 10);
-        testMakes10(9, 9);
-        testMakes10(1, 9);
+        testMakes10(9, 10, true);
+        testMakes10(9, 9, false);
+        testMakes10(1, 9, true);
     }
 }
