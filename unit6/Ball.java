@@ -5,7 +5,7 @@
 
 import processing.core.*;
 
-public class Ball extends PApplet
+public class Ball
 {
   public Ball(PApplet b, PVector p, PVector v, float r, int c)
   {
