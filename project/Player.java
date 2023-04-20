@@ -9,36 +9,40 @@ public class Player
 {
   public PVector pos, vel, gravity;
   public float r;
-  public int c;
+  //public int c;
+  public PImage img;
 
-  public Player(PApplet p, int c)
+  public Player(PApplet p, PImage img)
   {
     this.p = p;
-    this.c = c;
-    r = 185;
-    pos = new PVector(50, p.height - r);
+    this.img = img;
+    r = 255;
+    pos = new PVector(150, p.height - r - img.height);
     vel = new PVector(0, 0);
     gravity = new PVector(0, 2);
   }
 
+  public int height(){return img.height;}
+
+  public int width(){return img.width;}
+
+
   public void jump()
   {
-    vel.y = -35;
+    if(pos.y <= p.height - r - img.height && pos.y >= p.height - r - img.height - 175)
+      vel.y = -37;
   }
 
   public void move()
   {
     pos.y += vel.y;
     vel.y += gravity.y;
-    pos.y = p.constrain(pos.y, 0, p.height - r);
+    pos.y = p.constrain(pos.y, 0, p.height - r - img.height);
   }
 
   public void display()
   {
-    p.fill(c);
-    p.stroke(c);
-    p.strokeWeight(2);
-    p.rect(pos.x, pos.y - 100, 75, 100);
+    p.image(img, pos.x, pos.y);
   }
 
   private PApplet p;

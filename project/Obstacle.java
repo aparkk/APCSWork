@@ -9,14 +9,16 @@ public class Obstacle
 {
   public PVector pos;
   public float r;
-  public int c;
+  public int num;
+  public PImage img;
 
-  public Obstacle(PApplet o, int c)
+  public Obstacle(PApplet o, PImage img)
   {
     this.o = o;
-    this.c = c;
-    r = 185;
-    pos = new PVector(o.width, o.height - r);
+    this.img = img;
+    r = 255;
+    num = (int)(Math.random()*300 + 100);
+    pos = new PVector(o.width, o.height - r - num);
   }
 
   public void move()
@@ -26,9 +28,7 @@ public class Obstacle
 
   public void display()
   {
-    o.fill(c);
-    o.stroke(c);
-    o.rect(pos.x, pos.y - 55, 35, 55);
+    o.image(img, pos.x, pos.y);
   }
 
   private PApplet o;
