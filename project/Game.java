@@ -4,6 +4,8 @@
 
 
 import processing.core.*;
+import processing.sound.*;
+
 import java.util.*;
 
 public class Game extends PApplet
@@ -13,6 +15,9 @@ public class Game extends PApplet
   public PImage img, oImg, oImg1, background, bg;
   public PFont font;
   public int b1, b2, y1, y2;
+  public String[] list;
+  public String scores;
+  public SoundFile song, bonk;
 
   public void settings()
   {
@@ -32,6 +37,9 @@ public class Game extends PApplet
 
     font = createFont("krabbypatty.ttf", 50);
 
+    list = loadStrings("highscores.txt");
+    highScore = Integer.parseInt(list[list.length - 1]);
+
     player = new Player(this, img);
 
     obstacles = new ArrayList<Obstacle>();
@@ -40,6 +48,11 @@ public class Game extends PApplet
     b2 = color(25, 79, 144);
     y1 = color(247, 235, 98);
     y2 = color(187, 179, 34);
+
+    song = new SoundFile(this, "game.mp3");
+    bonk = new SoundFile(this, "bonk.mp3");
+    song.amp(0.45f);
+    song.loop();
   }
 
   public void createObstacle()
@@ -102,6 +115,11 @@ public class Game extends PApplet
       img = loadImage("sandy.png");
     else if (character == 6)
       img = loadImage("gary.png");
+    else if (character == -1)
+    {
+      character = 6;
+      img = loadImage("gary.png");
+    }
     else
       character = 0;
 
@@ -117,7 +135,7 @@ public class Game extends PApplet
     textAlign(CENTER);
     fill(b2);
     textSize(65);
-    text("Score: "+ score, width/2, 200);
+    text("Score: "+ newScore, width/2, 200);
 
     textAlign(RIGHT);
     textSize(40);
@@ -203,12 +221,15 @@ public class Game extends PApplet
       if(hits(o))
       {
         gameScreen = 2;
+        bonk.play();
       }
     }
 
     if(highScore < score)
     {
       highScore = score;
+      list[list.length - 1] =  str(highScore);
+      saveStrings("highscores.txt", list);
     }
     newScore = score;
   }
@@ -222,6 +243,8 @@ public class Game extends PApplet
     if(highScore < score)
     {
       highScore = score;
+      list[list.length - 1] =  str(highScore);
+      saveStrings("highscores.txt", list);
     }
 
     fill(255);
@@ -270,7 +293,7 @@ public class Game extends PApplet
 
     if (key == ENTER)
     {
-      gameScreen = -1;
+      gameScreen = 0;
     }
 
     if (key == ' ')
